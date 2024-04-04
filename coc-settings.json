@@ -1,0 +1,7 @@
+{
+    "suggest.noselect": false,
+    "suggest.languageSourcePriority": 99,
+    "semanticTokens.enable": true,
+	"explorer.icon.enableNerdfont": true,
+	"explorer.quitOnOpen": true
+}
