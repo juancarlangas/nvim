@@ -9,20 +9,22 @@
 		Plug 'cdelledonne/vim-cmake'
 		Plug 'tpope/vim-fugitive'
 		Plug 'sfztools/sfz.vim'
-		"Plug 'github/copilot.vim'
+		if empty($VSCODE_NEOVIM)
+			Plug 'github/copilot.vim'
+		endif
+		Plug 'mechatroner/rainbow_csv'
+		Plug 'ap/vim-css-color'
 		"Plug 'fneu/breezy'
 		"Plug 'nanotech/jellybeans.vim'
 		"Plug 'airblade/vim-gitgutter'
 		"Plug 'tribela/vim-transparent'
 		"Plug 'jiangmiao/auto-pairs' // Está dando lata con el coc.nvim
-		"Plug 'mechatroner/rainbow_csv'
 		"Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 		"Plug 'jackguo380/vim-lsp-cxx-highlight'
-		"Plug 'ap/vim-css-color'
 	call plug#end()
 
 " Activates Copilot
-	"let g:copilot#enabled = 1
+	let g:copilot#enabled = 1
 
 " COLORSCHEMES
 	" gruvbox
@@ -83,14 +85,14 @@
 	set clipboard=unnamed
 
 	" Map Ctrl+C to copy to system clipboard
-	nnoremap <C-c> "+y
-	vnoremap <C-c> "+y
-	inoremap <C-c> <C-o>"+y
+	"nnoremap <C-c> "+y
+	"vnoremap <C-c> "+y
+	"inoremap <C-c> <C-o>"+y
 
 	" Map Ctrl+V to paste from system clipboard
-	nnoremap <C-v> "+p
-	vnoremap <C-v> "+p
-	inoremap <C-v> <C-o>"+p
+	"nnoremap <C-v> "+p
+	"vnoremap <C-v> "+p
+	"inoremap <C-v> <C-o>"+p
 
 	"let g:lsp_cxx_hl_light_bg = 0
 	let g:coc_default_semantic_highlight_groups = 1
@@ -114,10 +116,10 @@
 	let g:airline_section_z = airline#section#create(["\uE0A1" . '%{line(".")}' . "\uE0A3" . '%{col(".")}'])
 
 " coc.nvim node path
-	"let g:coc_node_path = '/home/juancarlangas/.config/nvm/versions/node/v18.15.0/bin/node'
+	"let g:coc_node_path = '/snap/bin/node'
 
 " CMake
-	let g:cmake_console_size = 7
+	let g:cmake_console_size = 15
 	let g:cmake_jump_on_error = 1
 	" let g:cmake_default_config = 'build'
 	let g:cmake_link_compile_commands = '1'
@@ -150,9 +152,11 @@
 
 "
 	" CMake
-		nnoremap <F4> :CMakeGenerate<CR>
-		nnoremap <F7> :CMakeBuild<CR>
-		nnoremap <F8> :CMakeClose<CR>
+		nmap cg <Plug>(CMakeGenerate)
+		nmap cb <Plug>(CMakeBuild)
+		nmap ci <Plug>(CMakeInstall)
+		nmap cs <Plug>(CMakeSwitch)
+		nmap cq <Plug>(CMakeClose)
 "
 	"coc.nvim
 		nmap <Space>e <Cmd>CocCommand explorer<CR>
