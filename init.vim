@@ -3,17 +3,17 @@
 		Plug 'morhetz/gruvbox'
 		Plug 'Mofiqul/vscode.nvim'
 		Plug 'vim-airline/vim-airline'
-		Plug 'joshdick/onedark.vim'
+		"Plug 'joshdick/onedark.vim'
 		Plug 'neoclide/coc.nvim', {'branch': 'release'}
 		Plug 'fladson/vim-kitty'
 		Plug 'cdelledonne/vim-cmake'
 		Plug 'tpope/vim-fugitive'
 		Plug 'sfztools/sfz.vim'
 		if empty($VSCODE_NEOVIM)
-			Plug 'github/copilot.vim'
+			"Plug 'github/copilot.vim'
 		endif
-		Plug 'mechatroner/rainbow_csv'
-		Plug 'ap/vim-css-color'
+		"Plug 'mechatroner/rainbow_csv'
+		"Plug 'ap/vim-css-color'
 		"Plug 'fneu/breezy'
 		"Plug 'nanotech/jellybeans.vim'
 		"Plug 'airblade/vim-gitgutter'
@@ -24,7 +24,7 @@
 	call plug#end()
 
 " Activates Copilot
-	let g:copilot#enabled = 1
+	"let g:copilot#enabled = 1
 
 " COLORSCHEMES
 	" gruvbox
@@ -42,8 +42,12 @@
 
 	" onedark
 		let g:onedark_terminal_italics = 1
-	
-	luafile ~/.config/nvim/vscode.lua
+
+	if has('win32')
+		luafile C:/Users/juanc/AppData/Local/nvim/vscode.lua
+	else
+		luafile /home/juancarlangas/.config/nvim/vscode.lua
+	endif
 
 	colorscheme gruvbox
 	"colorscheme onehalfdark
@@ -162,7 +166,10 @@
 		nmap <Space>e <Cmd>CocCommand explorer<CR>
 		nnoremap <M-o> :CocCommand clangd.switchSourceHeader<CR>
 "
-"
+		"" May need for Vim (not Neovim) since coc.nvim calculates byte offset by count
+		" utf-8 byte sequence
+		set encoding=utf-8
+
 		" Some servers have issues with backup files, see #649.
 		set nobackup
 		set nowritebackup
@@ -299,8 +306,7 @@
 		" Add (Neo)Vim's native statusline support.
 		" NOTE: Please see `:h coc-status` for integrations with external plugins that
 		" provide custom statusline: lightline.vim, vim-airline.
-		set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
-"
+		set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}"
 		" Mappings for CoCList
 		" Show all diagnostics.
 		nnoremap <silent><nowait> <space>a  :<C-u>CocList diagnostics<cr>
